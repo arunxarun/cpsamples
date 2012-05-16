@@ -18,7 +18,6 @@ import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 import org.apache.log4j.Logger;
 
-//import com.disney.dcat.hadoopexamples.omnimapreduce.SessionLengthByUser.SessionLenCounters;
 
 
 /**

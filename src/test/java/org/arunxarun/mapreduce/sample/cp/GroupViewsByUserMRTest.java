@@ -2,17 +2,13 @@ package org.arunxarun.mapreduce.sample.cp;
 
 import static org.junit.Assert.*;
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
-import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Reducer;
@@ -22,7 +18,6 @@ import org.junit.Test;
 import org.arunxarun.mapreduce.unitmocks.MockCounter;
 import org.arunxarun.mapreduce.unitmocks.MockInputSplit;
 import org.arunxarun.mapreduce.unitmocks.MockOutputCommitter;
-import org.arunxarun.mapreduce.unitmocks.MockRawComparator;
 import org.arunxarun.mapreduce.unitmocks.MockRawKeyValueIterator;
 import org.arunxarun.mapreduce.unitmocks.MockRecordReader;
 import org.arunxarun.mapreduce.unitmocks.MockRecordWriter;
