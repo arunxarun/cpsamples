@@ -135,7 +135,7 @@ public class GroupViewsByUserMRTest {
 	 * @throws InterruptedException
 	 */
 	private Mapper<LongWritable, Text, Text, Text>.Context getMapperContext(
-			GroupViewsByUser.GroupViewsByUserMapper mapper,
+			Mapper<LongWritable, Text, Text, Text> mapper,
 			MockRecordWriter<Text, Text> rw) throws IOException,
 			InterruptedException {
 		Configuration conf = new Configuration();
