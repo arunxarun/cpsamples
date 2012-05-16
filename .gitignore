@@ -1,0 +1,5 @@
+# all files
+*.class
+.classpath
+.project
+.settings/
