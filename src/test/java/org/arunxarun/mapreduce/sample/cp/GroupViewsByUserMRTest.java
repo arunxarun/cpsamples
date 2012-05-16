@@ -89,9 +89,6 @@ public class GroupViewsByUserMRTest {
 		
 		Reducer<Text, Text, Text, Text>.Context context = getReducerContext(reducer,dwr,conf,taskId); 
 			
-//			reducer.new Context(
-//				conf, taskId, drkv, new MockCounter(), new MockCounter(), dwr,
-//				doc, dsr, null, Text.class, Text.class);
 
 		Iterable<Text> input = new Iterable<Text>() {
 
