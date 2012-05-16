@@ -6,6 +6,11 @@ import org.apache.hadoop.io.DataInputBuffer;
 import org.apache.hadoop.mapred.RawKeyValueIterator;
 import org.apache.hadoop.util.Progress;
 
+/**
+ * @author arun.x.arun@gmail.com 
+ * mock of the RawKeyValueIterator class used in MapReduce
+ * 
+ */
 public class MockRawKeyValueIterator implements RawKeyValueIterator {
 
 	@Override

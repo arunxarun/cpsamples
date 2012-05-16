@@ -9,37 +9,40 @@ import java.util.Map;
 import org.apache.hadoop.mapreduce.RecordWriter;
 import org.apache.hadoop.mapreduce.TaskAttemptContext;
 
-public class MockRecordListWriter<K,V> extends RecordWriter<K,V> {
+/**
+ * @author arun.x.arun@gmail.com 
+ * mock of the RecordWriter class used in MapReduce -- writes values as lists.
+ * 
+ */
+public class MockRecordListWriter<K, V> extends RecordWriter<K, V> {
 
-	private Map<K,List<V>> map;
-	
-	
+	private Map<K, List<V>> map;
+
 	public MockRecordListWriter() {
-		map = new HashMap<K,List<V>>();
-    }
-	
-	
-	@Override
-    public void close(TaskAttemptContext arg0) throws IOException, InterruptedException {
-	    	    
-    }
+		map = new HashMap<K, List<V>>();
+	}
 
 	@Override
-    public void write(K arg0, V arg1) throws IOException, InterruptedException {
-		
+	public void close(TaskAttemptContext arg0) throws IOException,
+			InterruptedException {
+
+	}
+
+	@Override
+	public void write(K arg0, V arg1) throws IOException, InterruptedException {
+
 		List<V> values = map.get(arg0);
-		
-		if(values == null) {
+
+		if (values == null) {
 			values = new ArrayList<V>();
-			map.put(arg0,values);
+			map.put(arg0, values);
 		}
-		
+
 		values.add(arg1);
-	    
-	    
-    }
-	
-	public Map<K,List<V>> getMap() {
+
+	}
+
+	public Map<K, List<V>> getMap() {
 		return map;
 	}
 

@@ -4,6 +4,11 @@ import java.io.IOException;
 
 import org.apache.hadoop.mapreduce.InputSplit;
 
+/**
+ * @author arun.x.arun@gmail.com 
+ * mock of the InputSplit class used in MapReduce
+ * 
+ */
 public class MockInputSplit extends InputSplit {
 
 	@Override

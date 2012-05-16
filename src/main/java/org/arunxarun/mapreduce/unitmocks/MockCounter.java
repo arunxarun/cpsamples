@@ -2,8 +2,12 @@ package org.arunxarun.mapreduce.unitmocks;
 
 import org.apache.hadoop.mapreduce.Counter;
 
+/**
+ * @author arun.x.arun@gmail.com 
+ * mock of the Counter class used in MapReduce
+ * 
+ */
 public class MockCounter extends Counter {
-
 
 	@Override
 	public int hashCode() {
@@ -50,10 +54,9 @@ public class MockCounter extends Counter {
 	private String group;
 	private Enum<?> enumName;
 	private long count;
-	
-	
+
 	public MockCounter() {
-		
+
 	}
 
 	public MockCounter(Enum<?> enumName) {
@@ -64,15 +67,15 @@ public class MockCounter extends Counter {
 		this.group = group;
 		this.name = name;
 	}
-	
+
 	@Override
 	public void increment(long incr) {
 		count++;
 	}
-	
+
 	@Override
 	public long getValue() {
 		return count;
 	}
-	
+
 }
