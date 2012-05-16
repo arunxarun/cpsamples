@@ -86,14 +86,12 @@ public class GroupViewsByUserMRTest {
 		Configuration conf = new Configuration();
 		TaskAttemptID taskId = new TaskAttemptID("foo", 1, true, 1, 12);
 		MockRecordWriter<Text, Text> dwr = new MockRecordWriter<Text, Text>();
-
-		MockOutputCommitter doc = new MockOutputCommitter();
-		MockStatusReporter dsr = new MockStatusReporter();
-		MockRawKeyValueIterator drkv = new MockRawKeyValueIterator();
-
-		Reducer<Text, Text, Text, Text>.Context context = reducer.new Context(
-				conf, taskId, drkv, new MockCounter(), new MockCounter(), dwr,
-				doc, dsr, null, Text.class, Text.class);
+		
+		Reducer<Text, Text, Text, Text>.Context context = getReducerContext(reducer,dwr,conf,taskId); 
+			
+//			reducer.new Context(
+//				conf, taskId, drkv, new MockCounter(), new MockCounter(), dwr,
+//				doc, dsr, null, Text.class, Text.class);
 
 		Iterable<Text> input = new Iterable<Text>() {
 
@@ -149,4 +147,36 @@ public class GroupViewsByUserMRTest {
 		return context;
 
 	}
+	
+	/**
+	 * 
+	 * return a valid reducer context
+	 * @param reducer
+	 * @param dwr
+	 * @param conf
+	 * @param id
+	 * @return
+	 * @throws IOException
+	 * @throws InterruptedException
+	 */
+	private Reducer<Text,Text,Text,Text>.Context getReducerContext(
+			Reducer<Text,Text,Text,Text> reducer, 
+			MockRecordWriter<Text, Text> dwr,
+			Configuration conf, 
+			TaskAttemptID id) throws IOException, 
+			InterruptedException {
+		
+		MockOutputCommitter doc = new MockOutputCommitter();
+		MockStatusReporter dsr = new MockStatusReporter();
+		MockRawKeyValueIterator drkv = new MockRawKeyValueIterator();
+		
+		
+		Reducer<Text,Text,Text,Text>.Context context = reducer.new Context(
+		conf, id, drkv, new MockCounter(), new MockCounter(), dwr,
+		doc, dsr, null, Text.class, Text.class);
+		
+		return context;
+	}
+	
+	
 }
