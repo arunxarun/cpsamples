@@ -26,7 +26,8 @@ import org.apache.log4j.Logger;
 public class GroupViewsByUser extends Configured implements Tool {
 
 	private static Logger LOGGER = Logger.getLogger(GroupViewsByUser.class);
-
+	public static final String INTERNAL_DELIMITER = "="; // for breaking up fields
+	public static final String FIELD_DELIMITER = "\t"; // for breaking up lines.
 	enum GroupByUserCounters {
 		BAD_LOG_FORMAT, BAD_URI_SUBFORMAT, MAP_CONTEXT_WRITE_IO_EXCEPTION, MAP_CONTEXT_WRITE_INTERRUPTED_EXCEPTION, REDUCE_CONTEXT_WRITE_IO_EXCEPTION, REDUCE_CONTEXT_WRITE_INTERRUPTED_EXCEPTION, BAD_REDUCE_INPUT_FORMAT
 	}
@@ -91,6 +92,8 @@ public class GroupViewsByUser extends Configured implements Tool {
 	public static class GroupViewsByUserReducer extends
 			Reducer<Text, Text, Text, Text> {
 
+		
+
 		/**
 		 *
 		 */
@@ -102,8 +105,8 @@ public class GroupViewsByUser extends Configured implements Tool {
 
 			// aggregate views by uri.
 			while (it.hasNext()) {
-				Text value = it.next();
-
+				Text value = new Text(it.next());
+				LOGGER.info("processing "+value.toString());
 				Integer count = URItoCount.get(value);
 
 				if (count == null) {
@@ -117,16 +120,17 @@ public class GroupViewsByUser extends Configured implements Tool {
 			// emit view:count format, tab delimited.
 
 			StringBuffer sbuf = new StringBuffer();
-
-			for (Map.Entry<Text, Integer> entry : URItoCount.entrySet()) {
-				sbuf.append(entry.getKey().toString()).append(":")
-						.append(entry.getValue());
-				sbuf.append("\t");
+			LOGGER.info("processed entry length = "+URItoCount.size());
+			for (Map.Entry<Text,Integer> entry : URItoCount.entrySet()) {
+				LOGGER.info("building view: processing "+entry.getKey().toString());
+				sbuf.append(entry.getKey().toString()).append(INTERNAL_DELIMITER)
+						.append(entry.getValue().toString());
+				sbuf.append(FIELD_DELIMITER);
 			}
 
 			// convert list to hadoop Text
 			String viewBuffer = sbuf.toString();
-			LOGGER.debug("reduce: key = " + key.toString() + ", value = "
+			LOGGER.info("reduce: key = " + key.toString() + ", value = "
 					+ viewBuffer);
 
 			Text allViews = new Text(viewBuffer);

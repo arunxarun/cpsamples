@@ -1,0 +1,6 @@
+127.0.0.1	-	frank	[10/Oct/2000:13:55:36 -0700]	"GET /foo/bar.html HTTP/1.0"	200	2326
+127.0.0.1	-	joe	[10/Oct/2000:13:56:12-0700]	"GET /foo/bar.html HTTP/1.0"	200	2326
+127.0.0.1	-	frank	[10/Oct/2000:14:06:12-0700]	"GET /foo/car.html HTTP/1.0"	200	2326
+127.0.0.1	-	joe	[10/Oct/2000:14:06:33-0700]	"GET /foo/car.html HTTP/1.0"	200	2326
+127.0.0.1	-	joe	[10/Oct/2000:13:55:37 -0700]	"GET /foo/baz.html HTTP/1.0"	200	2326
+127.0.0.1	-	frank	[10/Oct/2000:13:55:37 -0700]	"GET /foo/baz.html HTTP/1.0"	200	2326
